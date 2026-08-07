@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<robot name="esp32_bot">
+
+  <!-- ==================== MATERIALS ==================== -->
+  <material name="silver">
+    <color rgba="0.700 0.700 0.700 1.000"/>
+  </material>
+
+  <!-- ==================== BASE LINK ==================== -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.07000000000000302 0.05003463317028874 0.03937072162966072" rpy="0 0 1.7"/>
+      <mass value="0.4791631698015682"/>
+      <inertia ixx="0.000483" ixy="0.0" ixz="0.0" iyy="0.00048" iyz="1e-06" izz="0.000799"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ==================== RIGHT WHEEL ==================== -->
+  <link name="wheel_right">
+    <inertial>
+      <origin xyz="0.00849999999999998 7.450580569168253e-10 5.960464760645934e-11" rpy="0 0 0"/>
+      <mass value="0.01986743194130184"/>
+      <inertia ixx="4e-06" ixy="-0.0" ixz="-0.0" iyy="2e-06" iyz="0.0" izz="2e-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.122 -0.05 -0.0205" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.122 -0.05 -0.0205" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_wheel_right" type="continuous">
+    <origin xyz="0.122 0.05 0.0205" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_right"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ==================== LEFT WHEEL ==================== -->
+  <link name="wheel_left">
+    <inertial>
+      <origin xyz="-0.008499999999999997 7.450580638557192e-10 7.450581124279765e-11" rpy="0 0 0"/>
+      <mass value="0.019867431941301854"/>
+      <inertia ixx="4e-06" ixy="0.0" ixz="0.0" iyy="2e-06" iyz="0.0" izz="2e-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.018 -0.05 -0.0205" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.018 -0.05 -0.0205" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_wheel_left" type="continuous">
+    <origin xyz="0.018 0.05 0.0205" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_left"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ==================== FRONT CASTER ==================== -->
+  <link name="caster_front">
+    <inertial>
+      <origin xyz="0.0 0.0 -0.002631020066889628" rpy="0 0 0"/>
+      <mass value="0.0003639927788265455"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="-0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.07 -0.09 -0.00535" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/caster_front_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.07 -0.09 -0.00535" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/caster_front_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_caster_front" type="fixed">
+    <origin xyz="0.07 0.09 0.00535" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="caster_front"/>
+  </joint>
+
+  <!-- ==================== REAR CASTER ==================== -->
+  <link name="caster_rear">
+    <inertial>
+      <origin xyz="-1.3877787807814457e-17 0.0 -0.0026310200668896297" rpy="0 0 0"/>
+      <mass value="0.00036399277882654714"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.07 -0.01 -0.007" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/caster_rear_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.07 -0.01 -0.007" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/caster_rear_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_caster_rear" type="fixed">
+    <origin xyz="0.07 0.01 0.007" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="caster_rear"/>
+  </joint>
+
+  <!-- ==================== LASER / LIDAR ==================== -->
+  <link name="laser">
+    <inertial>
+      <origin xyz="0.0 -0.0025000000000000022 0.009999999999999995" rpy="0 0 0"/>
+      <mass value="0.002649999999999999"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.07 -0.1 -0.062" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/laser_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.07 -0.1 -0.062" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/meshes/laser_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_laser" type="fixed">
+    <origin xyz="0.07 0.1 0.062" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="laser"/>
+  </joint>
+
+</robot>

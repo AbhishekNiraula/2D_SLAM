@@ -1,0 +1,4 @@
+source;share/esp32_bot/local_setup.bash
+source;share/esp32_bot/local_setup.dsv
+source;share/esp32_bot/local_setup.sh
+source;share/esp32_bot/local_setup.zsh

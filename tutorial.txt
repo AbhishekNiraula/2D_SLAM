@@ -1,0 +1,16 @@
+Run the Micro ROS Agent in Laptop:
+	sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:jazzy udp4 --port 8888 -v6
+
+
+RViz:
+	ros2 launch esp32_bot display.launch.py
+
+Teleops Keyboard:
+	ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+SLAM:
+	ros2 launch slam_toolbox online_async_launch.py   use_sim_time:=false   slam_params_file:=/home/abhiniraula/Downloads/slam_params.yaml
+	Uses online_async_launch.py and also the slam_params.yaml file whose link is provided
+
+Save the MAP:
+	ros2 run nav2_map_server map_saver_cli -f my_map
