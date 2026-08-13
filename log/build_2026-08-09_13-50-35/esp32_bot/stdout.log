@@ -1,0 +1,39 @@
+-- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclpy: 7.1.11 (/opt/ros/jazzy/share/rclpy/cmake)
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/urdf/esp32_bot.urdf
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/urdf/esp32_bot1.urdf
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/urdf/temp.file
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/launch/__pycache__/display.launch.cpython-312.pyc
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/launch/display.launch.py
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/rviz/esp32_bot.rviz
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/base_link.stl
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/caster_front_1.stl
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/caster_rear_1.stl
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/laser_1.stl
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/left_wheel_1.stl
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/right_wheel_1.stl
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/ament_index/resource_index/package_run_dependencies/esp32_bot
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/ament_index/resource_index/parent_prefix_path/esp32_bot
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/path.sh
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/path.dsv
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.bash
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.sh
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.zsh
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.dsv
+-- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/package.dsv
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/ament_index/resource_index/packages/esp32_bot
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/cmake/esp32_botConfig.cmake
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/cmake/esp32_botConfig-version.cmake
+-- Up-to-date symlink: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/package.xml
+-- Up-to-date: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/lib/esp32_bot/tf_relay
+-- Up-to-date: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/lib/esp32_bot/explorer
+-- Up-to-date: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/lib/esp32_bot/rotate_scan
+-- Installing: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/lib/esp32_bot/stepped_rotate

@@ -28,6 +28,7 @@
 
 #include "tof.h"
 #include "motor.h"
+#include "mpu.h"
 
 // ─────────────────────────────────────────────
 //  WiFi & Agent
@@ -217,7 +218,8 @@ void publish_scan(uint16_t distance_mm, int64_t time_ns)
 
 void publish_odom(int64_t time_ns)
 {
-	motor_update_odometry(ODOM_DT);
+	float gyro_yaw_rate = mpu_get_yaw_rate_rad_s();
+	motor_update_odometry(ODOM_DT, gyro_yaw_rate);
 
 	odom_msg.header.stamp.sec = (int32_t)(time_ns / 1000000000LL);
 	odom_msg.header.stamp.nanosec = (uint32_t)(time_ns % 1000000000LL);
@@ -342,6 +344,7 @@ void setup()
 
 	tof_setup();
 	motor_setup();
+	mpu_setup();
 
 	wifi_setup();
 	set_microros_wifi_transports(ssid, psw, agent_ip, agent_port);

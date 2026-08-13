@@ -28,14 +28,12 @@ float odom_vtheta = 0.0f;
 float cmd_linear_x = 0.0f;
 float cmd_angular_z = 0.0f;
 
-// BUG FIX 1 — initialise to ULONG_MAX so the watchdog
-// doesn't fire until the first real cmd_vel arrives.
 unsigned long last_cmd_ms = ULONG_MAX;
 
 // ─────────────────────────────────────────────
 //  BUTTON STATE
 // ─────────────────────────────────────────────
-bool motor_enabled = false; // BUG FIX 2 — single definition here
+bool motor_enabled = false;
 bool last_btn_state = HIGH;
 
 // ─────────────────────────────────────────────
@@ -56,6 +54,7 @@ void IRAM_ATTR isr_left_encoder()
 	else
 		enc_left--;
 }
+
 // ─────────────────────────────────────────────
 //  MOTOR PRIMITIVES  (file-local)
 // ─────────────────────────────────────────────
@@ -110,8 +109,6 @@ void motor_stop_all()
 
 // ─────────────────────────────────────────────
 //  PUBLIC: differential drive  cmd_vel → PWM
-//    v_right = (linear + angular × base/2) / radius
-//    v_left  = (linear − angular × base/2) / radius
 // ─────────────────────────────────────────────
 void motor_apply_twist(float linear, float angular)
 {
@@ -129,10 +126,11 @@ void motor_apply_twist(float linear, float angular)
 }
 
 // ─────────────────────────────────────────────
-//  PUBLIC: dead-reckoning odometry update
-//  Call at a fixed rate; dt = interval in seconds
+//  PUBLIC: dead-reckoning odometry update, fused with gyro-Z
+//  Call at a fixed rate; dt = interval in seconds.
+//  gyro_yaw_rate_rad_s = live reading from mpu_get_yaw_rate_rad_s()
 // ─────────────────────────────────────────────
-void motor_update_odometry(float dt)
+void motor_update_odometry(float dt, float gyro_yaw_rate_rad_s)
 {
 	noInterrupts();
 	long cur_right = enc_right;
@@ -149,7 +147,11 @@ void motor_update_odometry(float dt)
 	float dist_l = d_left * M_PER_TICK;
 
 	float dist_c = (dist_r + dist_l) / 2.0f;
-	float delta_th = (dist_r - dist_l) / WHEEL_BASE_M;
+
+	// ── heading: complementary-filter encoder vs. gyro ──────────
+	float delta_th_enc = (dist_r - dist_l) / WHEEL_BASE_M;
+	float delta_th_gyro = gyro_yaw_rate_rad_s * dt;
+	float delta_th = GYRO_FILTER_ALPHA * delta_th_gyro + (1.0f - GYRO_FILTER_ALPHA) * delta_th_enc;
 
 	odom_x += dist_c * cosf(odom_theta + delta_th / 2.0f);
 	odom_y += dist_c * sinf(odom_theta + delta_th / 2.0f);
@@ -208,8 +210,6 @@ void motor_poll_button()
 		}
 		else
 		{
-			// BUG FIX 1 — reset watchdog so button-only mode works
-			// immediately without needing a cmd_vel first.
 			last_cmd_ms = millis();
 			Serial.println("[Motor] Enabled by button");
 		}
@@ -220,17 +220,6 @@ void motor_poll_button()
 
 // ─────────────────────────────────────────────
 //  PUBLIC: motor_drive_tick — call in AGENT_CONNECTED
-//
-//  Priority:
-//    1. Button disabled  → stop
-//    2. cmd_vel watchdog → stop (only fires after first cmd_vel)
-//    3. Drive at cmd_vel twist
-//
-//  BUG FIX 3 — when no cmd_vel has ever arrived (last_cmd_ms ==
-//  ULONG_MAX) the watchdog condition  millis() - ULONG_MAX  wraps
-//  to a tiny number and never triggers, so we drive at (0,0) —
-//  i.e. stopped.  Button press alone re-arms last_cmd_ms so the
-//  bot can be driven manually before the agent is up.
 // ─────────────────────────────────────────────
 void motor_drive_tick()
 {
@@ -240,8 +229,6 @@ void motor_drive_tick()
 		return;
 	}
 
-	// If last_cmd_ms == ULONG_MAX no cmd_vel has arrived yet;
-	// sit still but don't kill the enable flag.
 	if (last_cmd_ms == ULONG_MAX)
 	{
 		motor_stop_all();

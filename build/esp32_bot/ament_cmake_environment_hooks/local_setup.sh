@@ -2,7 +2,7 @@
 
 # since this file is sourced use either the provided AMENT_CURRENT_PREFIX
 # or fall back to the destination set at configure time
-: ${AMENT_CURRENT_PREFIX:="/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/install/esp32_bot"}
+: ${AMENT_CURRENT_PREFIX:="/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot"}
 if [ ! -d "$AMENT_CURRENT_PREFIX" ]; then
   if [ -z "$COLCON_CURRENT_PREFIX" ]; then
     echo "The compile time prefix path '$AMENT_CURRENT_PREFIX' doesn't " \

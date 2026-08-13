@@ -1,8 +1,8 @@
-# Install script for directory: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description
+# Install script for directory: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/install/esp32_bot")
+  set(CMAKE_INSTALL_PREFIX "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,11 +43,23 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
+  include("/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/esp32_bot" TYPE PROGRAM RENAME "tf_relay" FILES "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description/scripts/tf_relay.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/esp32_bot" TYPE PROGRAM RENAME "tf_relay" FILES "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description/scripts/tf_relay.py")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/esp32_bot" TYPE PROGRAM RENAME "explorer" FILES "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description/scripts/explorer.py")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/esp32_bot" TYPE PROGRAM RENAME "rotate_scan" FILES "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description/scripts/rotate_scan.py")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/esp32_bot" TYPE PROGRAM RENAME "stepped_rotate" FILES "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description/scripts/stepped_rotate.py")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -58,5 +70,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

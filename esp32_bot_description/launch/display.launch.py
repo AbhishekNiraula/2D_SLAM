@@ -56,4 +56,23 @@ def generate_launch_description():
             output     = 'screen',
             arguments  = ['-d', rviz_file],
         ),
+        
+        Node(
+			package    = 'esp32_bot',
+			executable = 'explorer',
+			name       = 'explorer',
+			output     = 'screen',
+		),
+        # Node(
+		# 	package    = 'esp32_bot',
+		# 	executable = 'rotate_scan',
+		# 	name       = 'rotate_scan',
+		# 	output     = 'screen',
+		# ),
+        # Node(
+		# 	package    = 'esp32_bot',
+		# 	executable = 'stepped_rotate',
+		# 	name       = 'stepped_rotate',
+		# 	output     = 'screen',
+		# ),
     ])

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description"
+CMAKE_SOURCE_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot"
+CMAKE_BINARY_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot"
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/CMakeFiles/uninstall.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot" "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/CMakeFiles/uninstall.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : CMakeFiles/uninstall.dir/depend
 

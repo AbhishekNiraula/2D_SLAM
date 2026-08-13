@@ -16,5 +16,22 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
   RENAME tf_relay
 )
+
+install(PROGRAMS
+  scripts/explorer.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME explorer
+)
+
+install(PROGRAMS
+  scripts/rotate_scan.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME rotate_scan
+)
+install(PROGRAMS
+  scripts/stepped_rotate.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME stepped_rotate
+)
  
 ament_package()

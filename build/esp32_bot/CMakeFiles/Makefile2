@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/esp32_bot_description"
+CMAKE_SOURCE_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot"
+CMAKE_BINARY_DIR = "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -82,14 +82,14 @@ clean: CMakeFiles/esp32_bot_uninstall.dir/clean
 CMakeFiles/uninstall.dir/all: CMakeFiles/esp32_bot_uninstall.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/CMakeFiles" --progress-num= "Built target uninstall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/CMakeFiles" --progress-num= "Built target uninstall"
 .PHONY : CMakeFiles/uninstall.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/uninstall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/CMakeFiles" 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/CMakeFiles" 0
 .PHONY : CMakeFiles/uninstall.dir/rule
 
 # Convenience name for target.
@@ -108,14 +108,14 @@ CMakeFiles/uninstall.dir/clean:
 CMakeFiles/esp32_bot_uninstall.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/esp32_bot_uninstall.dir/build.make CMakeFiles/esp32_bot_uninstall.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/esp32_bot_uninstall.dir/build.make CMakeFiles/esp32_bot_uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/CMakeFiles" --progress-num= "Built target esp32_bot_uninstall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/CMakeFiles" --progress-num= "Built target esp32_bot_uninstall"
 .PHONY : CMakeFiles/esp32_bot_uninstall.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/esp32_bot_uninstall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/CMakeFiles" 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/esp32_bot_uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/CMakeFiles" 0
 .PHONY : CMakeFiles/esp32_bot_uninstall.dir/rule
 
 # Convenience name for target.

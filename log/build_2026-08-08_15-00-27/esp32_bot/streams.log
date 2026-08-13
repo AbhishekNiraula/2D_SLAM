@@ -1,0 +1,55 @@
+[0.010s] Invoking command in '/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot
+[0.065s] -- The C compiler identification is GNU 13.3.0
+[0.111s] -- The CXX compiler identification is GNU 13.3.0
+[0.124s] -- Detecting C compiler ABI info
+[0.190s] -- Detecting C compiler ABI info - done
+[0.197s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.197s] -- Detecting C compile features
+[0.198s] -- Detecting C compile features - done
+[0.206s] -- Detecting CXX compiler ABI info
+[0.282s] -- Detecting CXX compiler ABI info - done
+[0.289s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.289s] -- Detecting CXX compile features
+[0.290s] -- Detecting CXX compile features - done
+[0.295s] -- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.414s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.496s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.531s] -- Found rclpy: 7.1.11 (/opt/ros/jazzy/share/rclpy/cmake)
+[0.612s] -- Configuring done (0.6s)
+[0.615s] -- Generating done (0.0s)
+[0.616s] -- Build files have been written to: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot
+[0.621s] Invoked command in '/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/esp32_bot_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot
+[0.623s] Invoking command in '/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot -- -j8 -l8
+[0.653s] Invoked command in '/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot -- -j8 -l8
+[0.661s] Invoking command in '/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot
+[0.667s] -- Install configuration: ""
+[0.668s] -- Execute custom install script
+[0.668s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/urdf/esp32_bot.urdf
+[0.675s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/urdf/esp32_bot1.urdf
+[0.683s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/urdf/temp.file
+[0.690s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/launch/__pycache__/display.launch.cpython-312.pyc
+[0.697s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/launch/display.launch.py
+[0.706s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/rviz/esp32_bot.rviz
+[0.714s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/base_link.stl
+[0.723s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/caster_front_1.stl
+[0.731s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/caster_rear_1.stl
+[0.738s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/laser_1.stl
+[0.746s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/left_wheel_1.stl
+[0.755s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/meshes/right_wheel_1.stl
+[0.767s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/ament_index/resource_index/package_run_dependencies/esp32_bot
+[0.781s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/ament_index/resource_index/parent_prefix_path/esp32_bot
+[0.796s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/ament_prefix_path.sh
+[0.811s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/ament_prefix_path.dsv
+[0.819s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/path.sh
+[0.831s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/environment/path.dsv
+[0.838s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.bash
+[0.845s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.sh
+[0.853s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.zsh
+[0.859s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/local_setup.dsv
+[0.867s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/package.dsv
+[0.875s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/ament_index/resource_index/packages/esp32_bot
+[0.882s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/cmake/esp32_botConfig.cmake
+[0.889s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/cmake/esp32_botConfig-version.cmake
+[0.897s] -- Symlinking: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/share/esp32_bot/package.xml
+[0.905s] -- Installing: /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot/lib/esp32_bot/tf_relay
+[0.917s] Invoked command in '/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot

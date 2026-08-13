@@ -2,7 +2,7 @@
 # ament_cmake_core/cmake/uninstall_target/ament_cmake_uninstall_target.cmake.in
 
 function(ament_cmake_uninstall_target_remove_empty_directories path)
-  set(install_space "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/install/esp32_bot")
+  set(install_space "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/install/esp32_bot")
   if(install_space STREQUAL "")
     message(FATAL_ERROR "The CMAKE_INSTALL_PREFIX variable must not be empty")
   endif()
@@ -29,7 +29,7 @@ function(ament_cmake_uninstall_target_remove_empty_directories path)
 endfunction()
 
 # uninstall files installed using the standard install() function
-set(install_manifest "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/install_manifest.txt")
+set(install_manifest "/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/install_manifest.txt")
 if(NOT EXISTS "${install_manifest}")
   message(FATAL_ERROR "Cannot find install manifest: ${install_manifest}")
 endif()
@@ -57,4 +57,4 @@ message(STATUS "Execute custom uninstall script")
 # begin of custom uninstall code
 
 # uninstall files installed using the symlink install functions
-include("/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Prototype_Niraj/build/esp32_bot/ament_cmake_symlink_install/ament_cmake_symlink_install_uninstall_script.cmake")
+include("/home/abhiniraula/Documents/Electronics Engineering/Sixth Semester/Minor Project/Minor Project Code/SLAM_Bot_Prototype/build/esp32_bot/ament_cmake_symlink_install/ament_cmake_symlink_install_uninstall_script.cmake")

@@ -10,6 +10,7 @@ Panels:
         - /Odometry1
         - /LaserScan1
         - /Map1
+        - /Map1/Status1
       Splitter Ratio: 0.5
     Tree Height: 264
   - Class: rviz_common/Selection
@@ -123,6 +124,8 @@ Visualization Manager:
           Value: true
         laser:
           Value: true
+        map:
+          Value: true
         odom:
           Value: true
         wheel_left:
@@ -135,19 +138,22 @@ Visualization Manager:
       Show Axes: false
       Show Names: false
       Tree:
+        base_link:
+          chassis:
+            caster_front:
+              {}
+            caster_rear:
+              {}
+            laser:
+              {}
+            wheel_left:
+              {}
+            wheel_right:
+              {}
+        map:
+          {}
         odom:
-          base_link:
-            chassis:
-              caster_front:
-                {}
-              caster_rear:
-                {}
-              laser:
-                {}
-              wheel_left:
-                {}
-              wheel_right:
-                {}
+          {}
       Update Interval: 0
       Value: true
     - Angle Tolerance: 0.10000000149011612
@@ -249,7 +255,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -305,10 +311,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.1747961044311523
+      Pitch: 0.5847971439361572
       Target Frame: base_link
       Value: Orbit (rviz)
-      Yaw: 3.1522223949432373
+      Yaw: 3.062225341796875
     Saved: ~
 Window Geometry:
   Displays:
@@ -316,13 +322,13 @@ Window Geometry:
   Height: 995
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000001c900000385fc0200000004fb000000100044006900730070006c006100790073010000003f00000148000000cc00fffffffb0000001200530065006c0065006300740069006f006e010000018d0000009e0000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007301000002310000009e0000005d00fffffffb0000000a0056006900650077007301000002d5000000ef000000a900ffffff000005b10000038500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000001000000000000015600000385fc0200000004fb000000100044006900730070006c006100790073010000003f00000148000000cc00fffffffb0000001200530065006c0065006300740069006f006e010000018d0000009e0000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007301000002310000009e0000005d00fffffffb0000000a0056006900650077007301000002d5000000ef000000a900ffffff000003040000038500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Tool Properties:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1920
+  Width: 1120
   X: 0
   Y: 0
