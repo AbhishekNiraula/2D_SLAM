@@ -126,11 +126,10 @@ void motor_apply_twist(float linear, float angular)
 }
 
 // ─────────────────────────────────────────────
-//  PUBLIC: dead-reckoning odometry update, fused with gyro-Z
+//  PUBLIC: wheel-encoder dead-reckoning odometry update
 //  Call at a fixed rate; dt = interval in seconds.
-//  gyro_yaw_rate_rad_s = live reading from mpu_get_yaw_rate_rad_s()
 // ─────────────────────────────────────────────
-void motor_update_odometry(float dt, float gyro_yaw_rate_rad_s)
+void motor_update_odometry(float dt)
 {
 	noInterrupts();
 	long cur_right = enc_right;
@@ -148,10 +147,9 @@ void motor_update_odometry(float dt, float gyro_yaw_rate_rad_s)
 
 	float dist_c = (dist_r + dist_l) / 2.0f;
 
-	// ── heading: complementary-filter encoder vs. gyro ──────────
+	// Heading comes only from the difference in wheel travel.
 	float delta_th_enc = (dist_r - dist_l) / WHEEL_BASE_M;
-	float delta_th_gyro = gyro_yaw_rate_rad_s * dt;
-	float delta_th = GYRO_FILTER_ALPHA * delta_th_gyro + (1.0f - GYRO_FILTER_ALPHA) * delta_th_enc;
+	float delta_th = delta_th_enc;
 
 	odom_x += dist_c * cosf(odom_theta + delta_th / 2.0f);
 	odom_y += dist_c * sinf(odom_theta + delta_th / 2.0f);

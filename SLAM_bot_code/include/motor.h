@@ -78,9 +78,8 @@ void motor_setup();
 void motor_stop_all();
 void motor_apply_twist(float linear, float angular);
 
-// dt            = seconds since last call
-// gyro_yaw_rate_rad_s = current gyro-Z reading in rad/s (from mpu_get_yaw_rate_rad_s())
-void motor_update_odometry(float dt, float gyro_yaw_rate_rad_s);
+// dt = seconds since last call. Heading is calculated from wheel encoders.
+void motor_update_odometry(float dt);
 
 void motor_poll_button();
 void motor_drive_tick();

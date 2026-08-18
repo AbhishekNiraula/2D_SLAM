@@ -28,15 +28,15 @@
 
 #include "tof.h"
 #include "motor.h"
-#include "mpu.h"
+#include "servo.h"
 
 // ─────────────────────────────────────────────
 //  WiFi & Agent
 // ─────────────────────────────────────────────
-char ssid[] = "umastha15_dhrn";
-char psw[] = "TNnBUSMQWQ@URHM";
+char ssid[] = "ererc_dhrn_2.4";
+char psw[] = "CLB2837D55";
 
-IPAddress agent_ip(192, 168, 1, 69);
+IPAddress agent_ip(192, 168, 1, 71);
 size_t agent_port = 8888;
 
 // ─────────────────────────────────────────────
@@ -45,6 +45,9 @@ size_t agent_port = 8888;
 const long SCAN_INTERVAL_MS = 100;
 const long ODOM_INTERVAL_MS = 20;
 const float ODOM_DT = ODOM_INTERVAL_MS / 1000.0f;
+const size_t SCAN_RAY_COUNT = SERVO_MAX_DEG - SERVO_MIN_DEG + 1;
+
+const float SERVO_SCAN_OFFSET_DEG = -60.0f;
 
 // ─────────────────────────────────────────────
 //  micro-ROS handles
@@ -64,8 +67,8 @@ rcl_allocator_t allocator;
 rcl_node_t node;
 rclc_executor_t executor;
 
-float ranges[1];
-float intensities[1];
+float ranges[SCAN_RAY_COUNT];
+float intensities[SCAN_RAY_COUNT];
 
 // ─────────────────────────────────────────────
 //  State machine
@@ -139,24 +142,25 @@ void init_scan_msg()
 	scan_msg.header.frame_id.size = strlen(frame_id);
 	scan_msg.header.frame_id.capacity = strlen(frame_id) + 1;
 
-	scan_msg.angle_min = -0.0175f;		// -1 degree
-	scan_msg.angle_max = 0.0175f;		// +1 degree
-	scan_msg.angle_increment = 0.0349f; // 2 degrees → gives exactly 1 ray
+	scan_msg.angle_min = (SERVO_MIN_DEG + SERVO_SCAN_OFFSET_DEG) * (float)M_PI / 180.0f;
+	scan_msg.angle_max = (SERVO_MAX_DEG + SERVO_SCAN_OFFSET_DEG) * (float)M_PI / 180.0f;
+	scan_msg.angle_increment = (float)M_PI / 180.0f;
 	scan_msg.time_increment = 0.0f;
 	scan_msg.scan_time = 0.1f;
 	scan_msg.range_min = 0.05f;
 	scan_msg.range_max = 2.0f;
 
-	ranges[0] = 0.0f;
-	ranges[1] = 0.0f; // ← second ray, same distance
-	intensities[0] = 50.0f;
-	intensities[1] = 50.0f;
+	for (size_t i = 0; i < SCAN_RAY_COUNT; ++i)
+	{
+		ranges[i] = NAN;
+		intensities[i] = 50.0f;
+	}
 	scan_msg.ranges.data = ranges;
-	scan_msg.ranges.size = 2; // ← 2 rays
-	scan_msg.ranges.capacity = 2;
+	scan_msg.ranges.size = SCAN_RAY_COUNT;
+	scan_msg.ranges.capacity = SCAN_RAY_COUNT;
 	scan_msg.intensities.data = intensities;
-	scan_msg.intensities.size = 2;
-	scan_msg.intensities.capacity = 2;
+	scan_msg.intensities.size = SCAN_RAY_COUNT;
+	scan_msg.intensities.capacity = SCAN_RAY_COUNT;
 }
 
 void init_odom_msg()
@@ -204,22 +208,22 @@ void publish_scan(uint16_t distance_mm, int64_t time_ns)
 {
 	scan_msg.header.stamp.sec = (int32_t)(time_ns / 1000000000LL);
 	scan_msg.header.stamp.nanosec = (uint32_t)(time_ns % 1000000000LL);
-	scan_msg.ranges.size = 2;
-	scan_msg.intensities.size = 2;
+	scan_msg.ranges.size = SCAN_RAY_COUNT;
+	scan_msg.intensities.size = SCAN_RAY_COUNT;
 	float d = (distance_mm == 0 || distance_mm >= 8190)
-				  ? scan_msg.range_max
+				  ? NAN
 				  : distance_mm / 1000.0f;
 
-	ranges[0] = d;
-	ranges[1] = d; // ← both rays same distance
+	int angle_index = servo_get_angle_deg() - SERVO_MIN_DEG;
+	if (angle_index >= 0 && angle_index < (int)SCAN_RAY_COUNT)
+		ranges[angle_index] = d;
 
 	rcl_publish(&scan_pub, &scan_msg, NULL);
 }
 
 void publish_odom(int64_t time_ns)
 {
-	float gyro_yaw_rate = mpu_get_yaw_rate_rad_s();
-	motor_update_odometry(ODOM_DT, gyro_yaw_rate);
+	motor_update_odometry(ODOM_DT);
 
 	odom_msg.header.stamp.sec = (int32_t)(time_ns / 1000000000LL);
 	odom_msg.header.stamp.nanosec = (uint32_t)(time_ns % 1000000000LL);
@@ -344,7 +348,7 @@ void setup()
 
 	tof_setup();
 	motor_setup();
-	mpu_setup();
+	servo_setup();
 
 	wifi_setup();
 	set_microros_wifi_transports(ssid, psw, agent_ip, agent_port);
@@ -381,6 +385,8 @@ void loop()
 	}
 
 	uint16_t distance_mm = tof_loop();
+
+	servo_sweep_tick();
 
 	switch (state)
 	{
