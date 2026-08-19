@@ -147,6 +147,42 @@
 				"file" : 6,
 				"line" : 39,
 				"parent" : 21
+			},
+			{
+				"command" : 1,
+				"file" : 5,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 23
+			},
+			{
+				"command" : 0,
+				"file" : 6,
+				"line" : 39,
+				"parent" : 24
+			},
+			{
+				"command" : 1,
+				"file" : 5,
+				"line" : 43,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 26
+			},
+			{
+				"command" : 0,
+				"file" : 6,
+				"line" : 39,
+				"parent" : 27
 			}
 		]
 	},
@@ -206,6 +242,32 @@
 				{
 					"from" : "scripts/stepped_rotate.py",
 					"to" : "stepped_rotate"
+				}
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 25,
+			"component" : "Unspecified",
+			"destination" : "lib/esp32_bot",
+			"paths" : 
+			[
+				{
+					"from" : "scripts/tof_mapper.py",
+					"to" : "tof_mapper"
+				}
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 28,
+			"component" : "Unspecified",
+			"destination" : "lib/esp32_bot",
+			"paths" : 
+			[
+				{
+					"from" : "scripts/wall_follower.py",
+					"to" : "wall_follower"
 				}
 			],
 			"type" : "file"

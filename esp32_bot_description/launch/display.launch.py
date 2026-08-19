@@ -48,7 +48,26 @@ def generate_launch_description():
             output     = 'screen',
         ),
 
-        # ── 4. RViz2 ──────────────────────────────────────────────
+        # ── 4. Persistent ToF occupancy-grid mapper ──────────────
+        # Converts /scan + /odom into a persistent /map topic.
+        Node(
+            package    = 'esp32_bot',
+            executable = 'tof_mapper',
+            name       = 'tof_mapper',
+            output     = 'screen',
+        ),
+
+        # ── 5. Slow right-hand wall follower ────────────────────
+        # Publishes /cmd_vel after valid /scan data arrives. The
+        # physical motor-enable button remains the final safety gate.
+        Node(
+            package    = 'esp32_bot',
+            executable = 'wall_follower',
+            name       = 'wall_follower',
+            output     = 'screen',
+        ),
+
+        # ── 6. RViz2 ──────────────────────────────────────────────
         Node(
             package    = 'rviz2',
             executable = 'rviz2',
@@ -57,12 +76,8 @@ def generate_launch_description():
             arguments  = ['-d', rviz_file],
         ),
         
-        Node(
-			package    = 'esp32_bot',
-			executable = 'explorer',
-			name       = 'explorer',
-			output     = 'screen',
-		),
+        # Explorer is disabled because it publishes /cmd_vel itself.
+        # Use teleop_twist_keyboard to drive while the mapper records data.
         # Node(
 		# 	package    = 'esp32_bot',
 		# 	executable = 'rotate_scan',

@@ -1,5 +1,9 @@
 #include "motor.h"
 
+// Leave LEDC channels 0 and 1 available to ESP32Servo.
+static const uint8_t MOTOR_A_PWM_CHANNEL = 2;
+static const uint8_t MOTOR_B_PWM_CHANNEL = 3;
+
 // ============================================================
 //  motor.cpp — all motor, encoder, and odometry definitions
 // ============================================================
@@ -64,17 +68,17 @@ static void _setMotorA(int speed)
 	{
 		digitalWrite(AIN1, HIGH);
 		digitalWrite(AIN2, LOW);
-		ledcWrite(0, (uint32_t)constrain(speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
+		ledcWrite(MOTOR_A_PWM_CHANNEL, (uint32_t)constrain(speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
 	}
 	else if (speed < 0)
 	{
 		digitalWrite(AIN1, LOW);
 		digitalWrite(AIN2, HIGH);
-		ledcWrite(0, (uint32_t)constrain(-speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
+		ledcWrite(MOTOR_A_PWM_CHANNEL, (uint32_t)constrain(-speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
 	}
 	else
 	{
-		ledcWrite(0, 0);
+		ledcWrite(MOTOR_A_PWM_CHANNEL, 0);
 	}
 }
 
@@ -84,17 +88,17 @@ static void _setMotorB(int speed)
 	{
 		digitalWrite(BIN1, HIGH);
 		digitalWrite(BIN2, LOW);
-		ledcWrite(1, (uint32_t)constrain(speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
+		ledcWrite(MOTOR_B_PWM_CHANNEL, (uint32_t)constrain(speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
 	}
 	else if (speed < 0)
 	{
 		digitalWrite(BIN1, LOW);
 		digitalWrite(BIN2, HIGH);
-		ledcWrite(1, (uint32_t)constrain(-speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
+		ledcWrite(MOTOR_B_PWM_CHANNEL, (uint32_t)constrain(-speed, MIN_MOTOR_PWM, MAX_MOTOR_PWM));
 	}
 	else
 	{
-		ledcWrite(1, 0);
+		ledcWrite(MOTOR_B_PWM_CHANNEL, 0);
 	}
 }
 
@@ -103,8 +107,8 @@ static void _setMotorB(int speed)
 // ─────────────────────────────────────────────
 void motor_stop_all()
 {
-	ledcWrite(0, 0);
-	ledcWrite(1, 0);
+	ledcWrite(MOTOR_A_PWM_CHANNEL, 0);
+	ledcWrite(MOTOR_B_PWM_CHANNEL, 0);
 }
 
 // ─────────────────────────────────────────────
@@ -183,10 +187,10 @@ void motor_setup()
 
 	pinMode(BUTTON, INPUT_PULLUP);
 
-	ledcSetup(0, 1000, 8);
-	ledcAttachPin(PWMA, 0);
-	ledcSetup(1, 1000, 8);
-	ledcAttachPin(PWMB, 1);
+	ledcSetup(MOTOR_A_PWM_CHANNEL, 1000, 8);
+	ledcAttachPin(PWMA, MOTOR_A_PWM_CHANNEL);
+	ledcSetup(MOTOR_B_PWM_CHANNEL, 1000, 8);
+	ledcAttachPin(PWMB, MOTOR_B_PWM_CHANNEL);
 
 	attachInterrupt(digitalPinToInterrupt(ENC_RIGHT_C1), isr_right_encoder, RISING);
 	attachInterrupt(digitalPinToInterrupt(ENC_LEFT_C1), isr_left_encoder, RISING);
@@ -236,6 +240,8 @@ void motor_drive_tick()
 	if ((millis() - last_cmd_ms) > CMD_TIMEOUT_MS)
 	{
 		motor_stop_all();
+		cmd_linear_x = 0.0f;
+		cmd_angular_z = 0.0f;
 	}
 	else
 	{

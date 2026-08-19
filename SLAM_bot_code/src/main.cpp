@@ -14,6 +14,7 @@
 #include <Wire.h>
 #include <WiFi.h>
 #include <micro_ros_platformio.h>
+#include "esp_system.h"
 #include "soc/soc.h"
 #include "soc/rtc_cntl_reg.h"
 
@@ -42,12 +43,12 @@ size_t agent_port = 8888;
 // ─────────────────────────────────────────────
 //  Publish rates
 // ─────────────────────────────────────────────
-const long SCAN_INTERVAL_MS = 100;
+const long SCAN_INTERVAL_MS = 100; // network publish throttle only — see note below
 const long ODOM_INTERVAL_MS = 20;
 const float ODOM_DT = ODOM_INTERVAL_MS / 1000.0f;
 const size_t SCAN_RAY_COUNT = SERVO_MAX_DEG - SERVO_MIN_DEG + 1;
 
-const float SERVO_SCAN_OFFSET_DEG = -60.0f;
+const float SERVO_SCAN_OFFSET_DEG = -55.0f;
 
 // ─────────────────────────────────────────────
 //  micro-ROS handles
@@ -95,7 +96,8 @@ void wifi_setup();
 void init_scan_msg();
 void init_odom_msg();
 void cmd_vel_callback(const void *msgin);
-void publish_scan(uint16_t distance_mm, int64_t time_ns);
+void record_current_reading(uint16_t distance_mm);
+void publish_scan(int64_t time_ns);
 void publish_odom(int64_t time_ns);
 
 // ─────────────────────────────────────────────
@@ -199,17 +201,57 @@ void cmd_vel_callback(const void *msgin)
 	cmd_linear_x = msg->linear.x;
 	cmd_angular_z = msg->angular.z;
 	last_cmd_ms = millis(); // re-arms the watchdog
+
+	bool moving = fabsf(cmd_linear_x) > 0.001f || fabsf(cmd_angular_z) > 0.001f;
+	bool was_scanning = servo_is_scanning();
+	if (moving && was_scanning)
+		Serial.println("[Servo] Scan paused while robot moves");
+	if (servo_set_robot_moving(moving))
+	{
+		// A stopped robot starts a new scan at SERVO_MIN_DEG. Discard the
+		// previous sweep's bins so the next /scan contains fresh readings.
+		for (size_t i = 0; i < SCAN_RAY_COUNT; ++i)
+			ranges[i] = NAN;
+		Serial.println("[Servo] Scan resumed at 5 degrees");
+	}
+}
+
+void synchronize_servo_scan_state()
+{
+	// Keep the scan gate correct even when the motor stops because of the
+	// enable button or the command watchdog rather than a fresh ROS callback.
+	bool command_fresh = last_cmd_ms != ULONG_MAX &&
+						 (millis() - last_cmd_ms) <= CMD_TIMEOUT_MS;
+	bool moving = motor_enabled && command_fresh &&
+				  (fabsf(cmd_linear_x) > 0.001f || fabsf(cmd_angular_z) > 0.001f);
+	bool was_scanning = servo_is_scanning();
+	if (moving && was_scanning)
+	{
+		servo_set_robot_moving(true);
+		Serial.println("[Servo] Scan paused while robot moves");
+		return;
+	}
+	if (!moving && !was_scanning && servo_set_robot_moving(false))
+	{
+		for (size_t i = 0; i < SCAN_RAY_COUNT; ++i)
+			ranges[i] = NAN;
+		Serial.println("[Servo] Scan resumed at 5 degrees");
+	}
 }
 
 // ─────────────────────────────────────────────
-//  Publish helpers
+//  Record + publish helpers
+//  FIX: recording into the ranges[] buffer is now decoupled from the
+//  network-publish cadence. Previously both happened inside publish_scan(),
+//  gated by SCAN_INTERVAL_MS (100ms) — but the servo can step through
+//  multiple angles within that window, silently dropping any reading taken
+//  between two publish ticks. record_current_reading() now runs every loop
+//  iteration (right after servo_sweep_tick()), so every angle the servo
+//  actually visits gets its distance written. publish_scan() still only
+//  broadcasts at SCAN_INTERVAL_MS to limit network/agent load.
 // ─────────────────────────────────────────────
-void publish_scan(uint16_t distance_mm, int64_t time_ns)
+void record_current_reading(uint16_t distance_mm)
 {
-	scan_msg.header.stamp.sec = (int32_t)(time_ns / 1000000000LL);
-	scan_msg.header.stamp.nanosec = (uint32_t)(time_ns % 1000000000LL);
-	scan_msg.ranges.size = SCAN_RAY_COUNT;
-	scan_msg.intensities.size = SCAN_RAY_COUNT;
 	float d = (distance_mm == 0 || distance_mm >= 8190)
 				  ? NAN
 				  : distance_mm / 1000.0f;
@@ -217,7 +259,14 @@ void publish_scan(uint16_t distance_mm, int64_t time_ns)
 	int angle_index = servo_get_angle_deg() - SERVO_MIN_DEG;
 	if (angle_index >= 0 && angle_index < (int)SCAN_RAY_COUNT)
 		ranges[angle_index] = d;
+}
 
+void publish_scan(int64_t time_ns)
+{
+	scan_msg.header.stamp.sec = (int32_t)(time_ns / 1000000000LL);
+	scan_msg.header.stamp.nanosec = (uint32_t)(time_ns % 1000000000LL);
+	scan_msg.ranges.size = SCAN_RAY_COUNT;
+	scan_msg.intensities.size = SCAN_RAY_COUNT;
 	rcl_publish(&scan_pub, &scan_msg, NULL);
 }
 
@@ -345,6 +394,7 @@ void setup()
 	pinMode(2, OUTPUT);
 	digitalWrite(2, LOW);
 	delay(2000);
+	Serial.printf("[BOOT] ESP32 reset reason=%d\n", (int)esp_reset_reason());
 
 	tof_setup();
 	motor_setup();
@@ -371,6 +421,7 @@ void loop()
 
 	// Button is always active regardless of agent state
 	motor_poll_button();
+	synchronize_servo_scan_state();
 
 	// WiFi watchdog
 	if (WiFi.status() != WL_CONNECTED)
@@ -383,10 +434,6 @@ void loop()
 		state = WAITING_AGENT;
 		return;
 	}
-
-	uint16_t distance_mm = tof_loop();
-
-	servo_sweep_tick();
 
 	switch (state)
 	{
@@ -429,11 +476,31 @@ void loop()
 		}
 		int64_t time_ns = rmw_uros_epoch_nanos();
 
-		if (now - last_scan_ms >= SCAN_INTERVAL_MS)
+		// Process the newest stop/move command before deciding whether the
+		// servo and ToF are allowed to run. This is important at the end of
+		// each movement segment.
+		if (rclc_executor_spin_some(&executor, RCL_MS_TO_NS(5)) != RCL_RET_OK)
+		{
+			Serial.println("[micro-ROS] Agent disconnected!");
+			state = AGENT_DISCONNECTED;
+			break;
+		}
+
+		if (servo_is_scanning())
+		{
+			servo_sweep_tick();
+			uint16_t distance_mm = tof_loop();
+			// Record every step the servo actually takes, not just the ones
+			// that happen to line up with a publish tick.
+			record_current_reading(distance_mm);
+		}
+
+		if (servo_is_scanning() && now - last_scan_ms >= SCAN_INTERVAL_MS)
 		{
 			last_scan_ms = now;
-			publish_scan(distance_mm, time_ns);
-			Serial.printf("[Scan] %.3f m  (%u mm)\n", ranges[0], distance_mm);
+			publish_scan(time_ns);
+			Serial.printf("[Scan] angle=%d deg  active=%d\n",
+						  servo_get_angle_deg(), servo_is_scanning());
 		}
 
 		if (now - last_odom_ms >= ODOM_INTERVAL_MS)
@@ -442,14 +509,6 @@ void loop()
 			publish_odom(time_ns);
 			Serial.printf("[Odom] x=%.3f  y=%.3f  th=%.3f\n",
 						  odom_x, odom_y, odom_theta);
-		}
-
-		// Spin executor first so cmd_vel is fresh before driving
-		if (rclc_executor_spin_some(&executor, RCL_MS_TO_NS(5)) != RCL_RET_OK)
-		{
-			Serial.println("[micro-ROS] Agent disconnected!");
-			state = AGENT_DISCONNECTED;
-			break;
 		}
 
 		motor_drive_tick();

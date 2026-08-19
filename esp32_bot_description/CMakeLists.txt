@@ -33,5 +33,17 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
   RENAME stepped_rotate
 )
+
+install(PROGRAMS
+  scripts/tof_mapper.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME tof_mapper
+)
+
+install(PROGRAMS
+  scripts/wall_follower.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME wall_follower
+)
  
 ament_package()

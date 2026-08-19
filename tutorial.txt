@@ -14,3 +14,6 @@ SLAM:
 
 Save the MAP:
 	ros2 run nav2_map_server map_saver_cli -f my_map
+
+Ros2 Web Socket:
+	ros2 launch rosbridge_server rosbridge_websocket_launch.xml

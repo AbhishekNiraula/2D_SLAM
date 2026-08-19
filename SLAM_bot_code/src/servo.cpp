@@ -6,6 +6,7 @@ static Servo scan_servo;
 static int angle_deg = SERVO_MIN_DEG;
 static int direction = 1;
 static unsigned long last_step_ms = 0;
+static bool scan_active = true;
 
 void servo_setup()
 {
@@ -16,6 +17,9 @@ void servo_setup()
 
 void servo_sweep_tick()
 {
+	if (!scan_active)
+		return;
+
 	unsigned long now = millis();
 	if (now - last_step_ms < SERVO_STEP_INTERVAL_MS)
 		return;
@@ -35,6 +39,32 @@ void servo_sweep_tick()
 	}
 
 	scan_servo.write(angle_deg);
+}
+
+bool servo_set_robot_moving(bool moving)
+{
+	if (moving)
+	{
+		scan_active = false;
+		return false;
+	}
+
+	if (!scan_active)
+	{
+		angle_deg = SERVO_MIN_DEG;
+		direction = 1;
+		last_step_ms = millis();
+		scan_servo.write(angle_deg);
+		scan_active = true;
+		return true;
+	}
+
+	return false;
+}
+
+bool servo_is_scanning()
+{
+	return scan_active;
 }
 
 float servo_get_angle_rad()
